@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="TodoApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Angular Application</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+    <!--Icons-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <style>
+        i:before{
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 300ms ease-in;
+        }
+
+        i:hover{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="center">First Angular App</h1>
+        <!--//binding the html element with the controller-->
+        <!--// any rendering here is the responsibility of the ToDoListController-->
+        <div ng-controller="TodoListController">
+
+            <!--// Get access to the data in the input field-->
+            <!--// Tie it to a model using ng-model-->
+            <input ng-model="todo.title" type="text" placeholder="Add A ToDo"/>
+
+            <!-- ng-click to notify the controller -->
+            <!-- todo={} to clear the current todo obj and it's title to clear the text on the input field -->
+            <button ng-click="addTodo(todo); todo={}" class="waves-effect waves-light btn red">Add Todo</button>
+
+            <ul class="collection">
+                <!-- ng-repeat is like a for loop -->
+                <!-- take the array and iterate over it and create as many -->
+                <!-- instances as there are in that array -->
+                <!-- the to do is a local variable for this for loop -->
+                <li ng-repeat="todo in todoArray" class="collection-item">
+                    {{todo.title}}
+                    <!--$index is managed by Angular while it was looping through the todo in todoArray-->
+                    <i ng-click="removeTodo($index)" class="fa fa-times-circle right fa-2" aria-hidden="true"></i>
+                </li>
+            </ul>
+
+        </div> <!-- END OF CONTROLLER -->
+    </div> <!-- END OF CONTAINER -->
+
+    <!--jQuery CDN-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+    <script src="app.js"></script>
+</body>
+</html>
